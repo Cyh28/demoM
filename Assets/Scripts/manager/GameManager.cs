@@ -6,6 +6,9 @@ using UnityEngine;
 public class GameManager : SingletonDontDestory<GameManager>
 {
     public CinemachineImpulseSource CIS;
+
+    public GameObject enemy;
+    public EnemyBase enemyBase;
     // Start is called before the first frame update
     void Start()
     {
