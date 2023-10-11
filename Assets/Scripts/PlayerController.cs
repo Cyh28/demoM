@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     }
 
     void Move() {
+        if(isMoving && player.velocity.magnitude <= 0.1f)
+            GameManager.GetInstance().CameraShake(0.03f);
         if (!isMoving) {
             if (Input.GetButtonDown("Moveup")) {
                 player.velocity = new Vector2(0, moveSpeed);
@@ -30,8 +32,6 @@ public class PlayerController : MonoBehaviour
                 player.velocity = new Vector2(-moveSpeed, 0);
             }
         }
-        if(isMoving && player.velocity.magnitude <= 0.1f)
-            GameManager.GetInstance().CameraShake(0.03f);
         isMoving = player.velocity.magnitude > 0.1f;
     }
 
