@@ -15,10 +15,16 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Rigidbody2D>();
     }
 
+    void HitWall() {
+        GameManager.GetInstance().CameraShake(0.04f);
+        HitEffectHandlerController.GetInstance().CreateEffect1();
+    }
+
     void Move() {
-        if(isMoving && player.velocity.magnitude <= 0.1f)
-            GameManager.GetInstance().CameraShake(0.04f);
-        isMoving = player.velocity.magnitude > 0.1f;
+        if (isMoving && player.velocity.magnitude <= 0.5f) {
+            HitWall();
+        }
+        isMoving = player.velocity.magnitude > 0.5f;
         if (!isMoving) {
             if (Input.GetButtonDown("Moveup")) {
                 player.velocity = new Vector2(0, moveSpeed);
